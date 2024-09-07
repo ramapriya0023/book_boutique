@@ -13,7 +13,7 @@ import {
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  apiKey: "AIzaSyBu_uYzSsX0Xtj6htOpVo6GD860eO_4E4U",
   authDomain: "bookboutique-d5bb0.firebaseapp.com",
   projectId: "bookboutique-d5bb0",
   storageBucket: "bookboutique-d5bb0.appspot.com",
