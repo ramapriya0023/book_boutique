@@ -13,10 +13,11 @@ import {
   NavLink,
   NavLinks,
 } from "./navigation.styles.js";
+import { Typography } from "@mui/material";
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
-  const { isCartOpen } = useContext(CartContext);
+  const { isCartOpen, setIsCartOpen } = useContext(CartContext);
   return (
     <Fragment>
       <NavigationContainer>
@@ -28,14 +29,19 @@ const Navigation = () => {
           />
         </LogoContainer>
         <NavLinks>
-          <NavLink to="/shop">SHOP</NavLink>
+          <NavLink to="/shop">
+            <Typography variant="h6">SHOP</Typography>
+          </NavLink>
           {currentUser ? (
             <NavLink as={"span"} onClick={signOutUser}>
-              SIGN OUT
+              <Typography variant="h6">SIGN OUT</Typography>
             </NavLink>
           ) : (
-            <NavLink to="/auth">SIGN IN</NavLink>
+            <NavLink to="/auth">
+              <Typography variant="h6">SIGN IN</Typography>
+            </NavLink>
           )}
+
           <CartIcon />
         </NavLinks>
         {isCartOpen && <CartDropdown />}
