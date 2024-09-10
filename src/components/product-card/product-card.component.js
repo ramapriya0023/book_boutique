@@ -1,6 +1,4 @@
-import { useContext, useState } from "react";
-
-import { CartContext } from "../../context/cart.context";
+import { useState } from "react";
 
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import CardContent from "@mui/material/CardContent";
@@ -10,14 +8,18 @@ import {
   ProductActions,
   ProductCardContainer,
 } from "./product-card.styles";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCartItems } from "../../store/cart/cart.selector";
+import { addItemToCart } from "../../store/cart/cart.action";
 
 const ProductCard = ({ product }) => {
   const { name, price, imageUrl } = product;
-  const { addItemToCart } = useContext(CartContext);
+  const dispatch = useDispatch();
+  const cartItems = useSelector(selectCartItems);
   const [isAddedToCart, setIsAddedToCart] = useState(false);
 
   const addProductToCart = () => {
-    addItemToCart(product);
+    dispatch(addItemToCart(cartItems, product));
     setIsAddedToCart(true);
   };
 

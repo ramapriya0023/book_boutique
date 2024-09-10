@@ -1,8 +1,6 @@
-import { Fragment, useContext } from "react";
+import { Fragment } from "react";
 import { Outlet } from "react-router-dom";
 import store_logo from "../../resources/store_logo.png";
-import { UserContext } from "../../context/user.context";
-import { CartContext } from "../../context/cart.context";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 import "./navigation.styles.js";
 import CartIcon from "../../components/cart-icon/cart-icon.component";
@@ -14,10 +12,13 @@ import {
   NavLinks,
 } from "./navigation.styles.js";
 import { Typography } from "@mui/material";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../store/user/user.selector";
+import { selectIsCartOpen } from "../../store/cart/cart.selector";
 
 const Navigation = () => {
-  const { currentUser } = useContext(UserContext);
-  const { isCartOpen, setIsCartOpen } = useContext(CartContext);
+  const currentUser = useSelector(selectCurrentUser);
+  const isCartOpen = useSelector(selectIsCartOpen);
   return (
     <Fragment>
       <NavigationContainer>
@@ -26,6 +27,7 @@ const Navigation = () => {
             src={store_logo}
             className="logo"
             style={{ height: "50px", width: "50px" }}
+            alt={"App logo"}
           />
         </LogoContainer>
         <NavLinks>
